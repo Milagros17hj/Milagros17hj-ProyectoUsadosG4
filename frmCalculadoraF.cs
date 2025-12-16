@@ -264,7 +264,7 @@ namespace ProyectoUsadosGrupo4
         }
 
         
-        private bool ValidarEntradas()
+       private bool ValidarEntradas()
         {
             // Validar precio
             if (!decimal.TryParse(txtPrecio.Text, out decimal precio) || precio <= 0)
@@ -295,5 +295,6 @@ namespace ProyectoUsadosGrupo4
 
             return true;
         }
+
     }
 }
