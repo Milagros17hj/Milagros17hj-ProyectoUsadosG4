@@ -16,7 +16,5 @@ namespace ProyectoUsadosGrupo4
         {
             InitializeComponent();
         }
-
-       
     }
 }
