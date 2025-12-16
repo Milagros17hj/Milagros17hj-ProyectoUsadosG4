@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace ProyectoUsadosGrupo4
 {
-    public partial class frmCalculadora : Form
+    public partial class frmCalculadoraF : Form
     {
         private DataSet ds;
         private decimal precioVehiculo = 0;

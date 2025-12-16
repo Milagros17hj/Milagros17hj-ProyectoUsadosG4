@@ -1,6 +1,6 @@
 ﻿namespace ProyectoUsadosGrupo4
 {
-    partial class frmCalculadora
+    partial class frmCalculadoraF
     {
         /// <summary>
         /// Required designer variable.
