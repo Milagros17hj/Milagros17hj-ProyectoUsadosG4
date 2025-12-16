@@ -38,19 +38,19 @@
             this.lblCuotaCalculo = new System.Windows.Forms.Label();
             this.lblInteres = new System.Windows.Forms.Label();
             this.lblMsesPlazo = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.cmbTipoVehiculo = new System.Windows.Forms.ComboBox();
+            this.txtTipoVehiculo = new System.Windows.Forms.TextBox();
+            this.txtImpuesto = new System.Windows.Forms.TextBox();
+            this.txtCuotaMensual = new System.Windows.Forms.TextBox();
+            this.txtPrima = new System.Windows.Forms.TextBox();
+            this.txtPrecio = new System.Windows.Forms.TextBox();
+            this.txtInteres = new System.Windows.Forms.TextBox();
+            this.txtMesesPlazo = new System.Windows.Forms.TextBox();
+            this.cmbEntidadFinanciera = new System.Windows.Forms.ComboBox();
             this.chkContado = new System.Windows.Forms.CheckBox();
             this.btnConsultar = new System.Windows.Forms.Button();
             this.btnReservarCita = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.txtTotalCalculo = new System.Windows.Forms.TextBox();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.grpDatos.SuspendLayout();
             this.SuspendLayout();
@@ -58,16 +58,16 @@
             // grpDatos
             // 
             this.grpDatos.Controls.Add(this.checkedListBox1);
-            this.grpDatos.Controls.Add(this.textBox8);
+            this.grpDatos.Controls.Add(this.txtTotalCalculo);
             this.grpDatos.Controls.Add(this.chkContado);
-            this.grpDatos.Controls.Add(this.cmbTipoVehiculo);
-            this.grpDatos.Controls.Add(this.textBox7);
-            this.grpDatos.Controls.Add(this.textBox6);
-            this.grpDatos.Controls.Add(this.textBox5);
-            this.grpDatos.Controls.Add(this.textBox4);
-            this.grpDatos.Controls.Add(this.textBox3);
-            this.grpDatos.Controls.Add(this.textBox2);
-            this.grpDatos.Controls.Add(this.textBox1);
+            this.grpDatos.Controls.Add(this.cmbEntidadFinanciera);
+            this.grpDatos.Controls.Add(this.txtMesesPlazo);
+            this.grpDatos.Controls.Add(this.txtInteres);
+            this.grpDatos.Controls.Add(this.txtPrecio);
+            this.grpDatos.Controls.Add(this.txtPrima);
+            this.grpDatos.Controls.Add(this.txtCuotaMensual);
+            this.grpDatos.Controls.Add(this.txtImpuesto);
+            this.grpDatos.Controls.Add(this.txtTipoVehiculo);
             this.grpDatos.Controls.Add(this.lblMsesPlazo);
             this.grpDatos.Controls.Add(this.lblInteres);
             this.grpDatos.Controls.Add(this.lblCuotaCalculo);
@@ -174,66 +174,66 @@
             this.lblMsesPlazo.TabIndex = 9;
             this.lblMsesPlazo.Text = "Meses Plazo:";
             // 
-            // textBox1
+            // txtTipoVehiculo
             // 
-            this.textBox1.Location = new System.Drawing.Point(233, 63);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(215, 22);
-            this.textBox1.TabIndex = 11;
+            this.txtTipoVehiculo.Location = new System.Drawing.Point(233, 63);
+            this.txtTipoVehiculo.Name = "txtTipoVehiculo";
+            this.txtTipoVehiculo.ReadOnly = true;
+            this.txtTipoVehiculo.Size = new System.Drawing.Size(215, 22);
+            this.txtTipoVehiculo.TabIndex = 11;
             // 
-            // textBox2
+            // txtImpuesto
             // 
-            this.textBox2.Location = new System.Drawing.Point(646, 184);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(147, 22);
-            this.textBox2.TabIndex = 12;
+            this.txtImpuesto.Location = new System.Drawing.Point(646, 184);
+            this.txtImpuesto.Name = "txtImpuesto";
+            this.txtImpuesto.ReadOnly = true;
+            this.txtImpuesto.Size = new System.Drawing.Size(147, 22);
+            this.txtImpuesto.TabIndex = 12;
             // 
-            // textBox3
+            // txtCuotaMensual
             // 
-            this.textBox3.Location = new System.Drawing.Point(646, 291);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(147, 22);
-            this.textBox3.TabIndex = 13;
+            this.txtCuotaMensual.Location = new System.Drawing.Point(646, 291);
+            this.txtCuotaMensual.Name = "txtCuotaMensual";
+            this.txtCuotaMensual.ReadOnly = true;
+            this.txtCuotaMensual.Size = new System.Drawing.Size(147, 22);
+            this.txtCuotaMensual.TabIndex = 13;
             // 
-            // textBox4
+            // txtPrima
             // 
-            this.textBox4.Location = new System.Drawing.Point(160, 289);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(147, 22);
-            this.textBox4.TabIndex = 14;
+            this.txtPrima.Location = new System.Drawing.Point(160, 289);
+            this.txtPrima.Name = "txtPrima";
+            this.txtPrima.Size = new System.Drawing.Size(147, 22);
+            this.txtPrima.TabIndex = 14;
             // 
-            // textBox5
+            // txtPrecio
             // 
-            this.textBox5.Location = new System.Drawing.Point(646, 63);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(147, 22);
-            this.textBox5.TabIndex = 15;
+            this.txtPrecio.Location = new System.Drawing.Point(646, 63);
+            this.txtPrecio.Name = "txtPrecio";
+            this.txtPrecio.Size = new System.Drawing.Size(147, 22);
+            this.txtPrecio.TabIndex = 15;
             // 
-            // textBox6
+            // txtInteres
             // 
-            this.textBox6.Location = new System.Drawing.Point(944, 61);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.ReadOnly = true;
-            this.textBox6.Size = new System.Drawing.Size(77, 22);
-            this.textBox6.TabIndex = 16;
+            this.txtInteres.Location = new System.Drawing.Point(944, 61);
+            this.txtInteres.Name = "txtInteres";
+            this.txtInteres.ReadOnly = true;
+            this.txtInteres.Size = new System.Drawing.Size(77, 22);
+            this.txtInteres.TabIndex = 16;
             // 
-            // textBox7
+            // txtMesesPlazo
             // 
-            this.textBox7.Location = new System.Drawing.Point(1036, 184);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(77, 22);
-            this.textBox7.TabIndex = 17;
+            this.txtMesesPlazo.Location = new System.Drawing.Point(1036, 184);
+            this.txtMesesPlazo.Name = "txtMesesPlazo";
+            this.txtMesesPlazo.Size = new System.Drawing.Size(77, 22);
+            this.txtMesesPlazo.TabIndex = 17;
             // 
-            // cmbTipoVehiculo
+            // cmbEntidadFinanciera
             // 
-            this.cmbTipoVehiculo.FormattingEnabled = true;
-            this.cmbTipoVehiculo.Location = new System.Drawing.Point(233, 184);
-            this.cmbTipoVehiculo.Name = "cmbTipoVehiculo";
-            this.cmbTipoVehiculo.Size = new System.Drawing.Size(204, 24);
-            this.cmbTipoVehiculo.TabIndex = 18;
+            this.cmbEntidadFinanciera.FormattingEnabled = true;
+            this.cmbEntidadFinanciera.Location = new System.Drawing.Point(233, 184);
+            this.cmbEntidadFinanciera.Name = "cmbEntidadFinanciera";
+            this.cmbEntidadFinanciera.Size = new System.Drawing.Size(204, 24);
+            this.cmbEntidadFinanciera.TabIndex = 18;
             // 
             // chkContado
             // 
@@ -275,14 +275,15 @@
             this.btnSalir.TabIndex = 22;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
-            // textBox8
+            // txtTotalCalculo
             // 
-            this.textBox8.Location = new System.Drawing.Point(323, 416);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.ReadOnly = true;
-            this.textBox8.Size = new System.Drawing.Size(147, 22);
-            this.textBox8.TabIndex = 20;
+            this.txtTotalCalculo.Location = new System.Drawing.Point(323, 416);
+            this.txtTotalCalculo.Name = "txtTotalCalculo";
+            this.txtTotalCalculo.ReadOnly = true;
+            this.txtTotalCalculo.Size = new System.Drawing.Size(147, 22);
+            this.txtTotalCalculo.TabIndex = 20;
             // 
             // checkedListBox1
             // 
@@ -297,7 +298,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(1104, 746);
+            this.ClientSize = new System.Drawing.Size(1385, 944);
             this.ControlBox = false;
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnReservarCita);
@@ -322,20 +323,20 @@
         private System.Windows.Forms.Label lblPrima;
         private System.Windows.Forms.Label lblEntidadFinanciera;
         private System.Windows.Forms.Label lbltipoVehiculo;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtMesesPlazo;
+        private System.Windows.Forms.TextBox txtInteres;
+        private System.Windows.Forms.TextBox txtPrecio;
+        private System.Windows.Forms.TextBox txtPrima;
+        private System.Windows.Forms.TextBox txtCuotaMensual;
+        private System.Windows.Forms.TextBox txtImpuesto;
+        private System.Windows.Forms.TextBox txtTipoVehiculo;
         private System.Windows.Forms.Label lblMsesPlazo;
         private System.Windows.Forms.CheckBox chkContado;
-        private System.Windows.Forms.ComboBox cmbTipoVehiculo;
+        private System.Windows.Forms.ComboBox cmbEntidadFinanciera;
         private System.Windows.Forms.Button btnConsultar;
         private System.Windows.Forms.Button btnReservarCita;
         private System.Windows.Forms.Button btnSalir;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox txtTotalCalculo;
         private System.Windows.Forms.CheckedListBox checkedListBox1;
     }
 }

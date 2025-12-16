@@ -17,7 +17,7 @@ namespace libreriaIII2025
 
         public static DataSet ejecutar(string comando)
         {
-            SqlConnection conn = new SqlConnection(@"Data Source=LAPTOP-U1S88HRT\CURSOSQL2022;Initial Catalog=BD_USADOSCR;Integrated Security=True");
+            SqlConnection conn = new SqlConnection(@"Data Source=Nahomy\MSSQLSERVER2022;Initial Catalog=BD_USADOSCR; Integrated Security=True");
             conn.Open();
             DataSet ds = new DataSet();
             SqlDataAdapter adaptador = new SqlDataAdapter(comando, conn);
