@@ -34,7 +34,7 @@ namespace ProyectoUsadosGrupo4
                 // VALIDACION CAMPOS VACIOS
                 if (string.IsNullOrWhiteSpace(txtUsuario.Text) || string.IsNullOrWhiteSpace(txtClave.Text))
                 {
-                    MessageBox.Show("Debeingresar los datos", "Validación",
+                    MessageBox.Show("Debe ingresar los datos", "Validación",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     limpiar();
                     return;
