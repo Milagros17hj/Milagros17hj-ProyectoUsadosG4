@@ -66,7 +66,7 @@
             this.txtUsuario.Location = new System.Drawing.Point(204, 88);
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(200, 30);
-            this.txtUsuario.TabIndex = 9;
+            this.txtUsuario.TabIndex = 0;
             // 
             // txtClave
             // 
@@ -125,6 +125,7 @@
             this.Name = "frmlogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
+            this.Load += new System.EventHandler(this.frmlogin_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

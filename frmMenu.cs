@@ -12,11 +12,12 @@ namespace ProyectoUsadosGrupo4
 {
     public partial class frmMenu : Form
     {
-        public frmMenu()
+        private DatosUsuario usuarioActual;
+        public frmMenu(DatosUsuario usuarioLogeado)
         {
             InitializeComponent();
+            usuarioActual = usuarioLogeado; 
         }
-
         private void cerrarSesionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -63,6 +64,20 @@ namespace ProyectoUsadosGrupo4
             frmCatalogoVehiculos catalogoVehiculos = new frmCatalogoVehiculos();
             catalogoVehiculos.MdiParent = this;
             catalogoVehiculos.Show();
+        }
+
+        private void cambiarContraseñaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmCambiarContraseña cambiarContraseña = new frmCambiarContraseña(usuarioActual);
+            cambiarContraseña.MdiParent = this;
+            cambiarContraseña.Show();
+        }
+
+        private void citasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmCita cita = new frmCita();
+            cita.MdiParent = this;
+            cita.Show();
         }
     }
 }

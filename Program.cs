@@ -14,14 +14,9 @@ namespace ProyectoUsadosGrupo4
         [STAThread]
         static void Main()
         {
-           // Application.EnableVisualStyles();
-          //  Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new frmlogin());
-           // Application.Run(new frmMenu());
-            //Application.Run(new frmRegistroEmpleado());
-            //Application.Run(new frmRegistroCliente());
-           // Application.Run(new frmCatalogoVehiculos());
-           Application.Run(new frmCalculadora());
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new frmlogin());
 
         }
     }

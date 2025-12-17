@@ -47,6 +47,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <!-- Referencias -->
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -60,6 +61,7 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
+  <!-- Formularios y clases -->
   <ItemGroup>
     <Compile Include="DatosCita.cs" />
     <Compile Include="DatosCliente.cs" />
@@ -70,117 +72,125 @@
     <Compile Include="DatosServicioAdicional.cs" />
     <Compile Include="DatosUsuario.cs" />
     <Compile Include="DatosVehiculo.cs" />
-    <Compile Include="frmCalculadora.cs">
+    <Compile Include="frmCambiarContraseña.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmCalculadora.Designer.cs">
-      <DependentUpon>frmCalculadora.cs</DependentUpon>
+    <Compile Include="frmCambiarContraseña.Designer.cs">
+      <DependentUpon>frmCambiarContraseña.cs</DependentUpon>
     </Compile>
+    <!-- frmCalculadora -->
+    <!-- frmCambiarContraseña -->
+    <!-- frmFacturación -->
     <Compile Include="frmFacturación.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmFacturación.Designer.cs">
       <DependentUpon>frmFacturación.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="frmCambiarContraseña.resx">
+      <DependentUpon>frmCambiarContraseña.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFacturación.resx">
+      <DependentUpon>frmFacturación.cs</DependentUpon>
+    </EmbeddedResource>
+    <!-- frmCatalogoVehiculos -->
     <Compile Include="frmCatalogoVehiculos.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmCatalogoVehiculos.Designer.cs">
       <DependentUpon>frmCatalogoVehiculos.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="frmCatalogoVehiculos.resx">
+      <DependentUpon>frmCatalogoVehiculos.cs</DependentUpon>
+    </EmbeddedResource>
+    <!-- frmCita -->
     <Compile Include="frmCita.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmCita.Designer.cs">
       <DependentUpon>frmCita.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="frmCita.resx">
+      <DependentUpon>frmCita.cs</DependentUpon>
+    </EmbeddedResource>
+    <!-- frmDetallesVehiculo -->
     <Compile Include="frmDetallesVehiculo.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmDetallesVehiculo.Designer.cs">
       <DependentUpon>frmDetallesVehiculo.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="frmDetallesVehiculo.resx">
+      <DependentUpon>frmDetallesVehiculo.cs</DependentUpon>
+    </EmbeddedResource>
+    <!-- frmRegistroEmpleado -->
     <Compile Include="frmRegistroEmpleado.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmRegistroEmpleado.Designer.cs">
       <DependentUpon>frmRegistroEmpleado.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="frmRegistroEmpleado.resx">
+      <DependentUpon>frmRegistroEmpleado.cs</DependentUpon>
+    </EmbeddedResource>
+    <!-- frmLogin -->
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <!-- frmManualUsuario -->
     <Compile Include="frmManualUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmManualUsuario.Designer.cs">
       <DependentUpon>frmManualUsuario.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="frmManualUsuario.resx">
+      <DependentUpon>frmManualUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <!-- frmMenu -->
     <Compile Include="frmMenu.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmMenu.Designer.cs">
       <DependentUpon>frmMenu.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="frmMenu.resx">
+      <DependentUpon>frmMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <!-- frmRegistroCliente -->
     <Compile Include="frmRegistroCliente.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmRegistroCliente.Designer.cs">
       <DependentUpon>frmRegistroCliente.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="frmRegistroCliente.resx">
+      <DependentUpon>frmRegistroCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <!-- frmRegistroUsuario -->
     <Compile Include="frmRegistroUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmRegistroUsuario.Designer.cs">
       <DependentUpon>frmRegistroUsuario.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmReservaCita.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmReservaCita.Designer.cs">
-      <DependentUpon>frmReservaCita.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sesiones.cs" />
-    <EmbeddedResource Include="frmCalculadora.resx">
-      <DependentUpon>frmCalculadora.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmCatalogoVehiculos.resx">
-      <DependentUpon>frmCatalogoVehiculos.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmCita.resx">
-      <DependentUpon>frmCita.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmDetallesVehiculo.resx">
-      <DependentUpon>frmDetallesVehiculo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmFacturación.resx">
-      <DependentUpon>frmFacturación.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmRegistroEmpleado.resx">
-      <DependentUpon>frmRegistroEmpleado.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmLogin.resx">
-      <DependentUpon>frmLogin.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmManualUsuario.resx">
-      <DependentUpon>frmManualUsuario.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmMenu.resx">
-      <DependentUpon>frmMenu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmRegistroCliente.resx">
-      <DependentUpon>frmRegistroCliente.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmRegistroUsuario.resx">
       <DependentUpon>frmRegistroUsuario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmReservaCita.resx">
-      <DependentUpon>frmReservaCita.cs</DependentUpon>
-    </EmbeddedResource>
+    <!-- frmReservaCita -->
+    <!-- Clases y otros -->
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sesiones.cs" />
+  </ItemGroup>
+  <!-- Recursos y configuración -->
+  <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -200,16 +210,16 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <!-- Referencia a proyecto -->
   <ItemGroup>
     <ProjectReference Include="libreriaIII2025\libreriaIII2025.csproj">
       <Project>{23ef5a32-5f40-4589-a2d6-4c5f7d28f018}</Project>
       <Name>libreriaIII2025</Name>
     </ProjectReference>
   </ItemGroup>
+  <!-- Paquetes de arranque -->
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">
       <Visible>False</Visible>
@@ -222,6 +232,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <!-- Servicios conectados -->
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>

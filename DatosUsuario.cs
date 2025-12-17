@@ -1,6 +1,6 @@
 ﻿namespace ProyectoUsadosGrupo4
 {
-    internal class DatosUsuario
+    public class DatosUsuario
     {
         private int idUsuario;
         private string numeroIdentificacion;

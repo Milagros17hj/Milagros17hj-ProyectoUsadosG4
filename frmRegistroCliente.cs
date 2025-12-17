@@ -91,7 +91,7 @@ namespace ProyectoUsadosGrupo4
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar los catálogos 001: " + ex.Message);
+                //MessageBox.Show("Error al cargar los catálogos 001: " + ex.Message);
             }
 
         }

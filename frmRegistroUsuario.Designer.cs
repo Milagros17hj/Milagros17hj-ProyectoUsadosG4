@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.ckbEstado = new System.Windows.Forms.CheckBox();
             this.txtApellido1 = new System.Windows.Forms.TextBox();
@@ -78,6 +78,7 @@
             this.ckbEstado.TabIndex = 44;
             this.ckbEstado.Text = "Inhabilitar Usuario";
             this.ckbEstado.UseVisualStyleBackColor = true;
+            this.ckbEstado.CheckedChanged += new System.EventHandler(this.ckbEstado_CheckedChanged);
             // 
             // txtApellido1
             // 
@@ -91,10 +92,11 @@
             // txtConfirmar
             // 
             this.txtConfirmar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtConfirmar.Location = new System.Drawing.Point(828, 233);
+            this.txtConfirmar.Location = new System.Drawing.Point(812, 207);
             this.txtConfirmar.Name = "txtConfirmar";
             this.txtConfirmar.Size = new System.Drawing.Size(150, 27);
             this.txtConfirmar.TabIndex = 40;
+            this.txtConfirmar.UseSystemPasswordChar = true;
             // 
             // txtApellido2
             // 
@@ -139,7 +141,7 @@
             // 
             this.lblContraseña.AutoSize = true;
             this.lblContraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblContraseña.Location = new System.Drawing.Point(355, 239);
+            this.lblContraseña.Location = new System.Drawing.Point(300, 214);
             this.lblContraseña.Name = "lblContraseña";
             this.lblContraseña.Size = new System.Drawing.Size(100, 20);
             this.lblContraseña.TabIndex = 33;
@@ -178,10 +180,11 @@
             // txtContraseña
             // 
             this.txtContraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtContraseña.Location = new System.Drawing.Point(461, 233);
+            this.txtContraseña.Location = new System.Drawing.Point(423, 207);
             this.txtContraseña.Name = "txtContraseña";
             this.txtContraseña.Size = new System.Drawing.Size(164, 27);
             this.txtContraseña.TabIndex = 29;
+            this.txtContraseña.UseSystemPasswordChar = true;
             // 
             // txtNombre
             // 
@@ -195,12 +198,11 @@
             // txtCedula
             // 
             this.txtCedula.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCedula.Location = new System.Drawing.Point(130, 45);
+            this.txtCedula.Location = new System.Drawing.Point(130, 38);
             this.txtCedula.Name = "txtCedula";
             this.txtCedula.Size = new System.Drawing.Size(162, 27);
             this.txtCedula.TabIndex = 27;
             this.txtCedula.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCedula_KeyDown);
-            this.txtCedula.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCedula_KeyPress);
             // 
             // txtUsuario
             // 
@@ -237,7 +239,10 @@
             this.grbUsuario.Controls.Add(this.lblCedula);
             this.grbUsuario.Controls.Add(this.txtCorreo);
             this.grbUsuario.Controls.Add(this.label1);
+            this.grbUsuario.Controls.Add(this.txtConfirmar);
             this.grbUsuario.Controls.Add(this.txtCedula);
+            this.grbUsuario.Controls.Add(this.txtContraseña);
+            this.grbUsuario.Controls.Add(this.lblContraseña);
             this.grbUsuario.Location = new System.Drawing.Point(38, 25);
             this.grbUsuario.Name = "grbUsuario";
             this.grbUsuario.Size = new System.Drawing.Size(993, 289);
@@ -269,14 +274,14 @@
             // 
             this.dgvDatos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvDatos.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvDatos.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgvDatos.Location = new System.Drawing.Point(27, 31);
             this.dgvDatos.Name = "dgvDatos";
             this.dgvDatos.RowHeadersWidth = 51;
@@ -351,15 +356,12 @@
             this.Controls.Add(this.btnConsultar);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.txtApellido1);
-            this.Controls.Add(this.txtConfirmar);
             this.Controls.Add(this.txtApellido2);
             this.Controls.Add(this.lblApellido2);
             this.Controls.Add(this.lblConfirmContraseña);
             this.Controls.Add(this.lblApellido1);
-            this.Controls.Add(this.lblContraseña);
             this.Controls.Add(this.lblNombre);
             this.Controls.Add(this.lblUsuario);
-            this.Controls.Add(this.txtContraseña);
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.txtUsuario);
             this.Controls.Add(this.grbUsuario);

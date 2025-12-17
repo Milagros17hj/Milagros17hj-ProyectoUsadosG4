@@ -33,6 +33,7 @@
             this.cerrarSesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.vEHICULOSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.catálogoDeVehiculosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MANTENIMIENTOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.empleadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,7 +52,6 @@
             this.aYUDAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manualDeUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aCERCADEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.catálogoDeVehiculosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -103,6 +103,13 @@
             this.vEHICULOSToolStripMenuItem.Size = new System.Drawing.Size(99, 24);
             this.vEHICULOSToolStripMenuItem.Text = "VEHICULOS";
             // 
+            // catálogoDeVehiculosToolStripMenuItem
+            // 
+            this.catálogoDeVehiculosToolStripMenuItem.Name = "catálogoDeVehiculosToolStripMenuItem";
+            this.catálogoDeVehiculosToolStripMenuItem.Size = new System.Drawing.Size(240, 26);
+            this.catálogoDeVehiculosToolStripMenuItem.Text = "Catálogo de Vehiculos";
+            this.catálogoDeVehiculosToolStripMenuItem.Click += new System.EventHandler(this.catálogoDeVehiculosToolStripMenuItem_Click);
+            // 
             // MANTENIMIENTOToolStripMenuItem
             // 
             this.MANTENIMIENTOToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -116,14 +123,14 @@
             // empleadosToolStripMenuItem
             // 
             this.empleadosToolStripMenuItem.Name = "empleadosToolStripMenuItem";
-            this.empleadosToolStripMenuItem.Size = new System.Drawing.Size(227, 26);
+            this.empleadosToolStripMenuItem.Size = new System.Drawing.Size(225, 26);
             this.empleadosToolStripMenuItem.Text = "Registro Empleados";
             this.empleadosToolStripMenuItem.Click += new System.EventHandler(this.empleadosToolStripMenuItem_Click);
             // 
             // clientesToolStripMenuItem
             // 
             this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
-            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(227, 26);
+            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(225, 26);
             this.clientesToolStripMenuItem.Text = "Registro Clientes";
             this.clientesToolStripMenuItem.Click += new System.EventHandler(this.clientesToolStripMenuItem_Click);
             // 
@@ -133,8 +140,8 @@
             this.agregarUsuarioToolStripMenuItem,
             this.cambiarContraseñaToolStripMenuItem});
             this.usuarioDelSistemaToolStripMenuItem.Name = "usuarioDelSistemaToolStripMenuItem";
-            this.usuarioDelSistemaToolStripMenuItem.Size = new System.Drawing.Size(227, 26);
-            this.usuarioDelSistemaToolStripMenuItem.Text = " Usuario del Sistema";
+            this.usuarioDelSistemaToolStripMenuItem.Size = new System.Drawing.Size(225, 26);
+            this.usuarioDelSistemaToolStripMenuItem.Text = "Usuario del Sistema";
             // 
             // agregarUsuarioToolStripMenuItem
             // 
@@ -148,6 +155,7 @@
             this.cambiarContraseñaToolStripMenuItem.Name = "cambiarContraseñaToolStripMenuItem";
             this.cambiarContraseñaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.cambiarContraseñaToolStripMenuItem.Text = "Cambiar contraseña";
+            this.cambiarContraseñaToolStripMenuItem.Click += new System.EventHandler(this.cambiarContraseñaToolStripMenuItem_Click);
             // 
             // tRANSACCIONESToolStripMenuItem
             // 
@@ -162,19 +170,20 @@
             // reservasToolStripMenuItem
             // 
             this.reservasToolStripMenuItem.Name = "reservasToolStripMenuItem";
-            this.reservasToolStripMenuItem.Size = new System.Drawing.Size(167, 26);
+            this.reservasToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.reservasToolStripMenuItem.Text = "Reservas";
             // 
             // citasToolStripMenuItem
             // 
             this.citasToolStripMenuItem.Name = "citasToolStripMenuItem";
-            this.citasToolStripMenuItem.Size = new System.Drawing.Size(167, 26);
+            this.citasToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.citasToolStripMenuItem.Text = "Citas";
+            this.citasToolStripMenuItem.Click += new System.EventHandler(this.citasToolStripMenuItem_Click);
             // 
             // facturaciónToolStripMenuItem
             // 
             this.facturaciónToolStripMenuItem.Name = "facturaciónToolStripMenuItem";
-            this.facturaciónToolStripMenuItem.Size = new System.Drawing.Size(167, 26);
+            this.facturaciónToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.facturaciónToolStripMenuItem.Text = "Facturación";
             // 
             // rEPORTESToolStripMenuItem
@@ -232,13 +241,6 @@
             this.aCERCADEToolStripMenuItem.Name = "aCERCADEToolStripMenuItem";
             this.aCERCADEToolStripMenuItem.Size = new System.Drawing.Size(110, 24);
             this.aCERCADEToolStripMenuItem.Text = "ACERCA DE...";
-            // 
-            // catálogoDeVehiculosToolStripMenuItem
-            // 
-            this.catálogoDeVehiculosToolStripMenuItem.Name = "catálogoDeVehiculosToolStripMenuItem";
-            this.catálogoDeVehiculosToolStripMenuItem.Size = new System.Drawing.Size(240, 26);
-            this.catálogoDeVehiculosToolStripMenuItem.Text = "Catálogo de Vehiculos";
-            this.catálogoDeVehiculosToolStripMenuItem.Click += new System.EventHandler(this.catálogoDeVehiculosToolStripMenuItem_Click);
             // 
             // frmMenu
             // 

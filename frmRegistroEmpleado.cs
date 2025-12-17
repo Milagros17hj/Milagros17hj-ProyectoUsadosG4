@@ -108,7 +108,7 @@ namespace ProyectoUsadosGrupo4
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar los catálogos 001: " + ex.Message);
+                //MessageBox.Show("Error al cargar los catálogos 001: " + ex.Message);
             }
         }
         private void cmbRol_SelectionChangeCommitted_1(object sender, EventArgs e)

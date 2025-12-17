@@ -1,8 +1,10 @@
-﻿using System;
+﻿using libreriaIII2025;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ProyectoUsadosGrupo4
 {
@@ -29,10 +31,22 @@ namespace ProyectoUsadosGrupo4
 
 
 
-        public string MostrarCita()
+        public bool InsertarCita()
         {
-            return "Cita: " + Fecha.ToShortDateString() + " " + Hora +
-                   " - Cliente: " + IdCliente + " - Agente: " + IdAgente;
+            try
+            {
+                string cmd = "INSERT INTO Cita (id_cliente, id_agente, id_recepcionista, fecha, hora, id_estado, id_vehiculo) " +
+                             "VALUES (" + IdCliente + ", " + IdAgente + ", " + IdRecepcionista + ", '" +
+                             Fecha.ToString("yyyy-MM-dd") + "', '" + Hora + "', " + IdEstado + ", " + IdVehiculo + ")";
+
+                Utilidades.ejecutar(cmd);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al insertar cita 001: " + ex.Message);
+                return false;
+            }
         }
     }
 }

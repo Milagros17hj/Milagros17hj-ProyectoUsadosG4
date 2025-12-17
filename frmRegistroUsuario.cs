@@ -15,6 +15,7 @@ namespace ProyectoUsadosGrupo4
     {
         DataSet ds;
         private DatosUsuario usuarioActual = new DatosUsuario();
+        private bool bloqueado = false;
         public frmRegistroUsuario()
         {
             InitializeComponent();
@@ -27,8 +28,6 @@ namespace ProyectoUsadosGrupo4
         private void frmRegistroUsuario_Load(object sender, EventArgs e)
         {
             ds = new DataSet();
-
-            
             txtNombre.ReadOnly = true;
             txtApellido1.ReadOnly = true;
             txtApellido2.ReadOnly = true;
@@ -38,7 +37,11 @@ namespace ProyectoUsadosGrupo4
             dgvDatos.AllowUserToAddRows = false;   
             dgvDatos.AllowUserToDeleteRows = false;
             dgvDatos.SelectionMode = DataGridViewSelectionMode.FullRowSelect; 
-            dgvDatos.MultiSelect = false;        
+            dgvDatos.MultiSelect = false;
+
+            ckbEstado.Checked = false;
+            ckbEstado.Enabled = false;
+            bloqueado = true;
         }
 
         //CONSULTA POR CEDULA PARA RELLENAR CAMPOS
@@ -133,7 +136,7 @@ namespace ProyectoUsadosGrupo4
             try
             {
                 string fecha = DateTime.Now.ToString("MM/dd/yyyy");
-                int estado = 1;
+                int estado = 1; // 1 = Habilitado, 2 = Inhabilitado Todos los usuarios nuevos se crean habilitados
                 string contraseñaCodificada = Utilidades.codificar(txtContraseña.Text.Trim());
 
                 if (string.IsNullOrWhiteSpace(txtCedula.Text) ||
@@ -145,7 +148,7 @@ namespace ProyectoUsadosGrupo4
                     string.IsNullOrWhiteSpace(txtApellido2.Text) ||
                     string.IsNullOrWhiteSpace(txtCorreo.Text))
                 {
-                    MessageBox.Show("Debe completar todos los espacios obligatorios.",
+                    MessageBox.Show("Debe completar todos los espacios",
                         "Error de Validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
@@ -175,7 +178,7 @@ namespace ProyectoUsadosGrupo4
 
                     Utilidades.ejecutar(cmd);
 
-                    MessageBox.Show("Se creó el usuario  satisfactoriamente",
+                    MessageBox.Show("Se creó el usuario satisfactoriamente",
                         "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     cargar(); 
@@ -189,7 +192,7 @@ namespace ProyectoUsadosGrupo4
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ha ocurrido un error al grabar 003: " + ex.Message,
+                MessageBox.Show("Ha ocurrido un error al grabar 002: " + ex.Message,
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -208,7 +211,7 @@ namespace ProyectoUsadosGrupo4
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar usuarios: " + ex.Message,
+                MessageBox.Show("Error al cargar usuarios 003: " + ex.Message,
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -221,6 +224,7 @@ namespace ProyectoUsadosGrupo4
         {
             try
             {
+                bloqueado = true;
                 txtCedula.Clear();
                 txtCorreo.Clear();
                 txtNombre.Clear();
@@ -230,15 +234,16 @@ namespace ProyectoUsadosGrupo4
                 txtContraseña.Clear();
                 txtConfirmar.Clear();
                 dgvDatos.DataSource = null;
-                dgvDatos.Rows.Clear(); 
-                ckbEstado.Checked = false; 
-
-                txtCedula.Focus(); 
+                dgvDatos.Rows.Clear();
+                ckbEstado.Checked = false;
+                ckbEstado.Enabled = false;
+                usuarioActual = new DatosUsuario(); 
+                bloqueado = false;
+                txtCedula.Focus();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al limpiar 004: " + ex.Message,
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al limpiar 004: " + ex.Message);
             }
         }
 
@@ -253,47 +258,48 @@ namespace ProyectoUsadosGrupo4
             {
                 if (string.IsNullOrWhiteSpace(txtCedula.Text))
                 {
-                    MessageBox.Show("Debe ingresar el número de identificación para consultar.", "Consulta",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Debe ingresar el número de identificación para consultar.",
+                        "Consulta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtCedula.Focus();
                     return;
                 }
 
                 string cmd = string.Format(
                     "SELECT u.id_usuario, u.numero_identificacion AS Cedula, u.nombre_usuario, u.email, " +
-                    "u.fec_creacion AS FechaCreacion, u.fec_modificacion AS FechaModificacion, " +
                     "CASE u.id_estado WHEN 1 THEN 'Habilitado' ELSE 'Inhabilitado' END AS Estado, " +
                     "CASE u.es_empleado WHEN 1 THEN 'Empleado' ELSE 'Cliente' END AS TipoPersona " +
-                    "FROM Usuario u " +
-                    "WHERE u.numero_identificacion = '{0}'",
+                    "FROM Usuario u WHERE u.numero_identificacion = '{0}'",
                     txtCedula.Text.Trim());
 
                 ds = Utilidades.ejecutar(cmd);
 
-                if (ds.Tables[0].Rows.Count > 0)
+                if (ds.Tables[0].Rows.Count == 0)
                 {
-                    // Mostrar todo en el DataGridView
-                    dgvDatos.DataSource = ds.Tables[0].DefaultView;
-
-                    // Llenar objeto usuarioActual solo con lo que tenés en la clase
-                    DataRow row = ds.Tables[0].Rows[0];
-                    usuarioActual.IdUsuario = Convert.ToInt32(row["id_usuario"]);
-                    usuarioActual.NumeroIdentificacion = row["Cedula"].ToString();
-                    usuarioActual.NombreUsuario = row["nombre_usuario"].ToString();
-                    usuarioActual.Email = row["email"].ToString();
-                    usuarioActual.IdEstado = (row["Estado"].ToString() == "Habilitado") ? 1 : 0;
-                    usuarioActual.EsEmpleado = (row["TipoPersona"].ToString() == "Empleado");
-                }
-                else
-                {
-                    MessageBox.Show("El usuario no está registrado.", "Consulta",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("El usuario no está registrado.",
+                        "Consulta", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     limpiar();
+                    return;
                 }
+
+                dgvDatos.DataSource = ds.Tables[0].DefaultView;
+
+                DataRow row = ds.Tables[0].Rows[0];
+
+                usuarioActual.IdUsuario = Convert.ToInt32(row["id_usuario"]);
+                usuarioActual.NumeroIdentificacion = row["Cedula"].ToString();
+                usuarioActual.NombreUsuario = row["nombre_usuario"].ToString();
+                usuarioActual.Email = row["email"].ToString();
+                usuarioActual.IdEstado = (row["Estado"].ToString() == "Habilitado") ? 1 : 2;
+                usuarioActual.EsEmpleado = (row["TipoPersona"].ToString() == "Empleado");
+
+                bloqueado = true;
+                ckbEstado.Checked = usuarioActual.IdEstado == 2;
+                ckbEstado.Enabled = true;
+                bloqueado = false;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ha ocurrido un error al consultar usuario: " + ex.Message);
+                MessageBox.Show("Ha ocurrido un error al consultar usuario 005: " + ex.Message);
             }
         }
 
@@ -307,7 +313,7 @@ namespace ProyectoUsadosGrupo4
             {
                 if (string.IsNullOrWhiteSpace(txtCedula.Text))
                 {
-                    MessageBox.Show("Debe ingresar el número de identificación para eliminar.", "Eliminar",
+                    MessageBox.Show("Debe ingresar el número de cedula para eliminar.", "Eliminar",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtCedula.Focus();
                     return;
@@ -325,27 +331,49 @@ namespace ProyectoUsadosGrupo4
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ha ocurrido un error al eliminar usuario: " + ex.Message,
+                MessageBox.Show("Ha ocurrido un error al eliminar usuario 006: " + ex.Message,
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void txtCedula_KeyPress(object sender, KeyPressEventArgs e)
+        private void ckbEstado_CheckedChanged(object sender, EventArgs e)
         {
-            if (char.IsDigit(e.KeyChar))
+            if (bloqueado) return;
+
+            if (usuarioActual == null || usuarioActual.IdUsuario == 0)
             {
-                e.Handled = false;
+                MessageBox.Show("Debe consultar el usuario antes de cambiar el estado.",
+                    "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                bloqueado = true;
+                ckbEstado.Checked = false;
+                bloqueado = false;
+                return;
             }
-            else if (char.IsControl(e.KeyChar))
+
+            try
             {
-                e.Handled = false;
+                int nuevoEstado = ckbEstado.Checked ? 2 : 1;
+                string cmd = string.Format(
+                    "UPDATE Usuario SET id_estado = {0}, fec_modificacion = '{1}' WHERE id_usuario = {2}",
+                    nuevoEstado,
+                    DateTime.Now.ToString("MM/dd/yyyy"),
+                    usuarioActual.IdUsuario
+                );
+
+                Utilidades.ejecutar(cmd);
+
+                MessageBox.Show("Estado actualizado correctamente",
+                    "Actualizar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                cargar();
             }
-            else
+            catch (Exception ex)
             {
-                e.Handled = true;
-                MessageBox.Show("Solo se aceptan números, No letras",
-                                "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Error al actualizar estado 007: " + ex.Message);
             }
         }
+
+
     }
 }
