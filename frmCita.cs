@@ -31,7 +31,7 @@ namespace ProyectoUsadosGrupo4
 
         private void frmCita_Load(object sender, EventArgs e)
         {
-            // Configurar botones según rol
+            
             if (Sesiones.Rol == 3) // Recepcionista
             {
                 btnAgendar.Enabled = true;
@@ -106,12 +106,10 @@ namespace ProyectoUsadosGrupo4
         {
             try
             {
-                // Validar que el valor sea correcto y no un DataRowView
                 if (cmbCliente.SelectedValue == null || cmbCliente.SelectedValue is DataRowView) return;
 
                 string idCliente = cmbCliente.SelectedValue.ToString();
 
-                // Datos del cliente
                 string cmdCliente = "SELECT nombre, primer_apellido, segundo_apellido, numero_identificacion " +
                                     "FROM Cliente WHERE id_cliente = " + idCliente;
 
@@ -133,7 +131,6 @@ namespace ProyectoUsadosGrupo4
                     txtIdentificación.Clear();
                 }
 
-                // Modelo del vehículo asociado en la cita (usando id_cliente e id_vehiculo de Cita)
                 string cmdVehiculo = "SELECT v.modelo " +
                                      "FROM Cita c " +
                                      "INNER JOIN Vehiculo v ON c.id_vehiculo = v.id_vehiculo " +
@@ -193,8 +190,8 @@ namespace ProyectoUsadosGrupo4
                     return;
                 }
 
-                dgvCitas.Enabled = true; // 👈 habilitado solo si hay agente
-                Consultar();             // 👈 cargar citas del agente
+                dgvCitas.Enabled = true; 
+                Consultar();             
             }
             catch (Exception ex)
             {
@@ -211,7 +208,7 @@ namespace ProyectoUsadosGrupo4
                 if (cmbEstado.SelectedValue == null || cmbEstado.SelectedValue is DataRowView) return;
 
                 string idEstado = cmbEstado.SelectedValue.ToString();
-                // Usar idEstado en tu lógica
+   
             }
             catch (Exception ex)
             {
@@ -276,11 +273,10 @@ namespace ProyectoUsadosGrupo4
                     return;
                 }
 
-                // Fecha y hora actuales
                 string fecha = DateTime.Now.ToString("yyyy-MM-dd");
                 string hora = DateTime.Now.ToString("HH:mm:ss");
 
-                // Buscar la cita existente
+
                 string modelo = txtVehiculo.Text.Replace("'", "''");
                 string cmdBuscarCita = "SELECT TOP 1 id_cita FROM Cita " +
                                        "WHERE id_cliente = " + cmbCliente.SelectedValue +
@@ -298,7 +294,7 @@ namespace ProyectoUsadosGrupo4
 
                 int idCita = Convert.ToInt32(dsCita.Tables[0].Rows[0]["id_cita"]);
 
-                // Actualizar la cita existente
+
                 string cmdUpdate = "UPDATE Cita SET " +
                                    "id_agente = " + idAgente + ", " +
                                    "id_recepcionista = " + Sesiones.IdEmpleado + ", " +
@@ -426,7 +422,7 @@ namespace ProyectoUsadosGrupo4
         {
             try
             {
-                // Validar rol: solo recepcionista (1) o administrador (99)
+
                 if (Sesiones.Rol != 2 && Sesiones.Rol != 1)
                 {
                     MessageBox.Show("Solo la recepcionista o el administrador pueden eliminar citas.",
@@ -436,7 +432,7 @@ namespace ProyectoUsadosGrupo4
 
                 if (dgvCitas.SelectedRows.Count > 0)
                 {
-                    string idCita = dgvCitas.SelectedRows[0].Cells["IdCita"].Value.ToString(); // 👈 corregido
+                    string idCita = dgvCitas.SelectedRows[0].Cells["IdCita"].Value.ToString(); 
 
                     DialogResult result = MessageBox.Show("¿Está segura de eliminar esta cita?", "Confirmar",
                         MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -473,10 +469,10 @@ namespace ProyectoUsadosGrupo4
                 {
                     DataGridViewRow row = dgvCitas.Rows[e.RowIndex];
 
-                    // Guardar id_cita para actualizar
+
                     idCitaSeleccionada = Convert.ToInt32(row.Cells["IdCita"].Value);
 
-                    // Cargar datos en los controles
+
                     dtpFecha.Value = Convert.ToDateTime(row.Cells["Fecha"].Value);
                     dtpHora.Value = DateTime.Parse(row.Cells["Hora"].Value.ToString());
                     cmbCliente.Text = row.Cells["Cliente"].Value.ToString();
