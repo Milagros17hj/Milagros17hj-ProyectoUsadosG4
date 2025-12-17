@@ -22,6 +22,10 @@ namespace ProyectoUsadosGrupo4
             CargarServiciosAdicionales();
             InicializarValores();
         }
+        public frmCalculadoraF()
+        {
+            InitializeComponent();
+        }
         private void InicializarValores()
         {
             txtInteres.Text = "8.5";
@@ -249,7 +253,7 @@ namespace ProyectoUsadosGrupo4
                     }
                 }
 
-                // Valor por defecto si no se puede obtener de la BD
+                
                 return 0.085m; // 8.5%
             }
             catch (Exception ex)
@@ -259,8 +263,8 @@ namespace ProyectoUsadosGrupo4
             }
         }
 
-        // También necesitas este método de validación
-        private bool ValidarEntradas()
+        
+       private bool ValidarEntradas()
         {
             // Validar precio
             if (!decimal.TryParse(txtPrecio.Text, out decimal precio) || precio <= 0)
@@ -291,5 +295,6 @@ namespace ProyectoUsadosGrupo4
 
             return true;
         }
+
     }
 }

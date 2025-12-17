@@ -79,7 +79,7 @@
             this.grpDatos.Controls.Add(this.lbltipoVehiculo);
             this.grpDatos.Location = new System.Drawing.Point(0, 0);
             this.grpDatos.Name = "grpDatos";
-            this.grpDatos.Size = new System.Drawing.Size(1376, 533);
+            this.grpDatos.Size = new System.Drawing.Size(1092, 533);
             this.grpDatos.TabIndex = 0;
             this.grpDatos.TabStop = false;
             this.grpDatos.Text = "Datos";
