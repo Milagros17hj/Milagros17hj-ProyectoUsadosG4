@@ -205,6 +205,7 @@
             this.pbVehiculo.Size = new System.Drawing.Size(300, 308);
             this.pbVehiculo.TabIndex = 14;
             this.pbVehiculo.TabStop = false;
+            this.pbVehiculo.Click += new System.EventHandler(this.pbVehiculo_Click);
             // 
             // grbCaracteristicas
             // 

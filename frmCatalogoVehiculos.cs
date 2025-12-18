@@ -13,27 +13,29 @@ namespace ProyectoUsadosGrupo4
 {
     public partial class frmCatalogoVehiculos : Form
     {
+
         public frmCatalogoVehiculos()
         {
             InitializeComponent();
-            
+
+
         }
-        
+
         private void frmCatalogoVehiculos_Load(object sender, EventArgs e)
         {
-            
-            btnJac4.Tag = 10;
-            btnZeerkX.Tag = 11;
-            btnGeely.Tag = 12;
-            btnJac1.Tag = 13;
-            btnJacT8.Tag = 14;
-            btnChevrolet.Tag = 15;
-            btnNissan.Tag = 16;
-            btnHilux.Tag = 17;
-            btnAudi.Tag = 18;
-            btnYaris.Tag = 19;
-            btnSuzuki.Tag = 20;
-            btnAccent.Tag = 21;
+           
+            btnJac4.Tag = 1;
+            btnZeerkX.Tag = 2;
+            btnGeely.Tag = 3;
+            btnJac1.Tag = 4;
+            btnJacT8.Tag = 5;
+            btnChevrolet.Tag = 6;
+            btnNissan.Tag = 7;
+            btnHilux.Tag = 8;
+            btnAudi.Tag = 9;
+            btnYaris.Tag = 10;
+            btnSuzuki.Tag = 11;
+            btnAccent.Tag = 12;
         }
         // BOTON SALIR
         private void btnSalir_Click(object sender, EventArgs e)
@@ -96,7 +98,9 @@ namespace ProyectoUsadosGrupo4
                 if (vehiculo != null)
                 {
                     frmDetallesVehiculo frmDetalles = new frmDetallesVehiculo(vehiculo);
+                    frmDetalles.MdiParent = this.MdiParent; 
                     frmDetalles.Show();
+                    this.Close(); 
                 }
                 else
                 {
@@ -121,7 +125,9 @@ namespace ProyectoUsadosGrupo4
                 if (vehiculo != null)
                 {
                     frmDetallesVehiculo frmDetalles = new frmDetallesVehiculo(vehiculo);
+                    frmDetalles.MdiParent = this.MdiParent;
                     frmDetalles.Show();
+                    this.Close();
                 }
                 else
                 {
@@ -146,7 +152,9 @@ namespace ProyectoUsadosGrupo4
                 if (vehiculo != null)
                 {
                     frmDetallesVehiculo frmDetalles = new frmDetallesVehiculo(vehiculo);
+                    frmDetalles.MdiParent = this.MdiParent;
                     frmDetalles.Show();
+                    this.Close();
                 }
                 else
                 {
@@ -171,7 +179,9 @@ namespace ProyectoUsadosGrupo4
                 if (vehiculo != null)
                 {
                     frmDetallesVehiculo frmDetalles = new frmDetallesVehiculo(vehiculo);
+                    frmDetalles.MdiParent = this.MdiParent;
                     frmDetalles.Show();
+                    this.Close();
                 }
                 else
                 {
@@ -196,7 +206,9 @@ namespace ProyectoUsadosGrupo4
                 if (vehiculo != null)
                 {
                     frmDetallesVehiculo frmDetalles = new frmDetallesVehiculo(vehiculo);
+                    frmDetalles.MdiParent = this.MdiParent;
                     frmDetalles.Show();
+                    this.Close();
                 }
                 else
                 {
@@ -221,7 +233,9 @@ namespace ProyectoUsadosGrupo4
                 if (vehiculo != null)
                 {
                     frmDetallesVehiculo frmDetalles = new frmDetallesVehiculo(vehiculo);
+                    frmDetalles.MdiParent = this.MdiParent;
                     frmDetalles.Show();
+                    this.Close();
                 }
                 else
                 {
@@ -246,7 +260,9 @@ namespace ProyectoUsadosGrupo4
                 if (vehiculo != null)
                 {
                     frmDetallesVehiculo frmDetalles = new frmDetallesVehiculo(vehiculo);
+                    frmDetalles.MdiParent = this.MdiParent;
                     frmDetalles.Show();
+                    this.Close();
                 }
                 else
                 {
@@ -271,7 +287,9 @@ namespace ProyectoUsadosGrupo4
                 if (vehiculo != null)
                 {
                     frmDetallesVehiculo frmDetalles = new frmDetallesVehiculo(vehiculo);
+                    frmDetalles.MdiParent = this.MdiParent;
                     frmDetalles.Show();
+                    this.Close();
                 }
                 else
                 {
@@ -296,7 +314,9 @@ namespace ProyectoUsadosGrupo4
                 if (vehiculo != null)
                 {
                     frmDetallesVehiculo frmDetalles = new frmDetallesVehiculo(vehiculo);
+                    frmDetalles.MdiParent = this.MdiParent; 
                     frmDetalles.Show();
+                    this.Close(); 
                 }
                 else
                 {

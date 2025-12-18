@@ -1,13 +1,14 @@
-﻿using System;
+﻿using libreriaIII2025;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using libreriaIII2025;
 
 namespace ProyectoUsadosGrupo4
 {
@@ -18,15 +19,16 @@ namespace ProyectoUsadosGrupo4
             InitializeComponent();
         }
 
-        //BOTON DE VOLVER AL CATALOGO NO DE SALIR
         private void btnVolver_Click(object sender, EventArgs e)
         {
             frmCatalogoVehiculos frmCatalogo = new frmCatalogoVehiculos();
+            frmCatalogo.MdiParent = this.MdiParent; // mismo contenedor (menú)
             frmCatalogo.Show();
-            this.Close();
-
-
+            this.Close(); // cerrar el detalle
         }
+
+
+        
 
         private DatosVehiculo vehiculoActual;
 
@@ -56,16 +58,22 @@ namespace ProyectoUsadosGrupo4
             rtbSeguridad.Text = vehiculoActual.Seguridad;
             rtbInfoExtra.Text = vehiculoActual.Otros;
 
-            // Estado → traducir id_estado a descripción
+        
             txtEstado.Text = ObtenerDescripcionEstado(vehiculoActual.IdEstado);
 
             // Imagen
-            if (!string.IsNullOrEmpty(vehiculoActual.ImagenPath))
-            {
-                pbVehiculo.ImageLocation = vehiculoActual.ImagenPath;
-                pbVehiculo.SizeMode = PictureBoxSizeMode.Zoom;
+            string ruta = Path.Combine(Application.StartupPath, "ImagenesVehiculos", vehiculoActual.ImagenPath);
+                if (File.Exists(ruta))
+                {
+                    pbVehiculo.ImageLocation = ruta;
+                    pbVehiculo.SizeMode = PictureBoxSizeMode.Zoom;
+                }
+                else
+                {
+                    pbVehiculo.Image = null;
+                }
             }
-        }
+        
         private string ObtenerDescripcionEstado(int idEstado)
         {
             try
@@ -96,6 +104,13 @@ namespace ProyectoUsadosGrupo4
         {
             btnCalculadora.Select();
         }
+
+        private void pbVehiculo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 
     
