@@ -231,7 +231,6 @@
             this.txtIdentificación.Name = "txtIdentificación";
             this.txtIdentificación.Size = new System.Drawing.Size(145, 27);
             this.txtIdentificación.TabIndex = 53;
-            this.txtIdentificación.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIdentificación_KeyPress);
             // 
             // dtpNacimiento
             // 

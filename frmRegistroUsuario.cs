@@ -54,6 +54,7 @@ namespace ProyectoUsadosGrupo4
 
         }
 
+        //CONSULTA POR CEDULA PARA RELLENAR CAMPOS
         private void ConsultarPersona()
         {
             try
@@ -88,6 +89,9 @@ namespace ProyectoUsadosGrupo4
                     txtApellido1.Text = empleado.PrimerApellido;
                     txtApellido2.Text = empleado.SegundoApellido;
                     txtCorreo.Text = empleado.Email;
+
+                    usuarioActual.EsEmpleado = true;
+
                     return;
                 }
 
@@ -114,10 +118,13 @@ namespace ProyectoUsadosGrupo4
                     txtApellido1.Text = cliente.PrimerApellido;
                     txtApellido2.Text = cliente.SegundoApellido;
                     txtCorreo.Text = cliente.Email;
+
+                    usuarioActual.EsEmpleado = false;
                 }
                 else
                 {
-                    MessageBox.Show("No se encontro cliente con esa cédula", "No encontrado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("No se encontro cliente con esa cédula",
+                        "No encontrado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             catch (Exception ex)
@@ -162,7 +169,7 @@ namespace ProyectoUsadosGrupo4
                     usuario.Contrasena = contraseñaCodificada;
                     usuario.Email = txtCorreo.Text.Trim();
                     usuario.IdEstado = estado;
-                    usuario.EsEmpleado = true; 
+                    usuario.EsEmpleado = usuarioActual.EsEmpleado;  
 
                     string cmd = string.Format("INSERT INTO Usuario (numero_identificacion, nombre_usuario, contrasena, email, id_estado, fec_creacion, fec_modificacion, es_empleado) " +
                         "VALUES ('{0}', '{1}', '{2}', '{3}', {4}, '{5}', '{6}', {7})",

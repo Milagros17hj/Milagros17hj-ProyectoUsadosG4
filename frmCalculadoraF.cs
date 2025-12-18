@@ -14,210 +14,178 @@ namespace ProyectoUsadosGrupo4
     public partial class frmCalculadoraF : Form
     {
         private DataSet ds;
+        private DataSet dsServicios;
         private decimal precioVehiculo = 0;
 
-        private void frmCalculadora_Load(object sender, EventArgs e)
-        {
-            CargarEntidadesFinancieras();
-            CargarServiciosAdicionales();
-            InicializarValores();
-        }
         public frmCalculadoraF()
         {
             InitializeComponent();
         }
+
+        private void frmCalculadoraF_Load(object sender, EventArgs e)
+        {
+            InicializarValores();
+            CargarEntidadesFinancieras();
+            CargarServiciosAdicionales();
+        }
+
         private void InicializarValores()
         {
-            txtInteres.Text = "8.5";
-            txtImpuesto.Text = "13"; // IVA 13%
-            txtMesesPlazo.Text = "36";
+            txtInteres.Text = "0";
+            txtImpuesto.Text = "13";
+            txtMesesPlazo.Text = "60";
             txtPrima.Text = "0";
+            txtTipoVehiculo.Text = "Sedán";
+
+            // Inicializar como contado
+            chkContado.Checked = true;
+            HabilitarControlesFinanciamiento();
         }
+
         private void CargarEntidadesFinancieras()
         {
+
             try
             {
-                string comando = "SELECT IdEntidad, NombreEntidad, TasaInteres FROM EntidadFinanciera";
+                string comando = "SELECT id_entidad, NombreEntidad, TasaInteres, Plazo FROM EntidadFinanciera";
                 ds = Utilidades.ejecutar(comando);
 
-                if (ds.Tables.Count > 0)
+                if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
                 {
                     cmbEntidadFinanciera.DataSource = ds.Tables[0];
                     cmbEntidadFinanciera.DisplayMember = "NombreEntidad";
-                    cmbEntidadFinanciera.ValueMember = "IdEntidad";
+                    cmbEntidadFinanciera.ValueMember = "id_entidad";
                     cmbEntidadFinanciera.SelectedIndex = 0;
+
+                    // Cargar el plazo máximo después de cargar los datos
+                    CargarPlazoMaximo();
+                }
+                else
+                {
+                    CargarDatosSimulados();
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show($"Error al cargar bancos: {ex.Message}", "Error");
-
-                CargarBancosSimulados();
+                CargarDatosSimulados();
             }
         }
-        private void CargarBancosSimulados()
+
+        private void CargarDatosSimulados()
         {
-            // Datos de respaldo por si falla la BD
-            cmbEntidadFinanciera.Items.Clear();
-            cmbEntidadFinanciera.Items.Add("Banco Nacional - 9.5%");
-            cmbEntidadFinanciera.Items.Add("Banco de Costa Rica - 9.0%");
-            cmbEntidadFinanciera.Items.Add("BAC Credomatic - 8.5%");
+            DataTable dt = new DataTable();
+            dt.Columns.Add("id_entidad", typeof(int));
+            dt.Columns.Add("NombreEntidad", typeof(string));
+            dt.Columns.Add("TasaInteres", typeof(decimal));
+            dt.Columns.Add("Plazo", typeof(int));
+
+            dt.Rows.Add(2, "Banco Nacional - 9.5%", 0.095m, 60);
+            dt.Rows.Add(3, "BAC Credomatic - 8.5%", 0.085m, 60);
+            dt.Rows.Add(4, "Banco de Costa Rica - 9.0%", 0.090m, 60);
+
+            cmbEntidadFinanciera.DataSource = dt;
+            cmbEntidadFinanciera.DisplayMember = "NombreEntidad";
+            cmbEntidadFinanciera.ValueMember = "id_entidad";
             cmbEntidadFinanciera.SelectedIndex = 0;
+
+      
+            CargarPlazoMaximo();
         }
+
         private void CargarServiciosAdicionales()
         {
             try
             {
-
                 string comando = "SELECT IdServicio, descripcion, costo FROM ServicioAdicional";
-                ds = Utilidades.ejecutar(comando);
+                dsServicios = Utilidades.ejecutar(comando);
 
-                if (ds.Tables.Count > 0)
+                checkedListBox1.Items.Clear();
+
+                if (dsServicios != null && dsServicios.Tables.Count > 0)
                 {
-                    checkedListBox1.Items.Clear();
-                    foreach (DataRow row in ds.Tables[0].Rows)
+                    foreach (DataRow row in dsServicios.Tables[0].Rows)
                     {
-
                         decimal costo = Convert.ToDecimal(row["costo"]);
-                        string itemText = $"{row["descripcion"]} - ₡{costo:N0}";
-                        checkedListBox1.Items.Add(itemText, false);
+                        string descripcion = row["descripcion"].ToString();
+                        checkedListBox1.Items.Add($"{descripcion} - ₡{costo:N0}");
                     }
                 }
+                else
+                {
+                    checkedListBox1.Items.Add("Financiamiento - ₡0");
+                    checkedListBox1.Items.Add("Seguro - ₡55,000");
+                    checkedListBox1.Items.Add("Mantenimiento - ₡180,000");
+                }
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show($"Error al cargar servicios: {ex.Message}", "Error");
-                // Si falla, carga datos simulados
-                CargarServiciosSimulados();
+                checkedListBox1.Items.Add("Financiamiento - ₡0");
+                checkedListBox1.Items.Add("Seguro - ₡55,000");
+                checkedListBox1.Items.Add("Mantenimiento - ₡180,000");
             }
-
-        }
-        private void CargarServiciosSimulados()
-        {
-            checkedListBox1.Items.Clear();
-            checkedListBox1.Items.Add("Financiamiento - ₡0");
-            checkedListBox1.Items.Add("Mantenimiento - ₡180,000");
-            checkedListBox1.Items.Add("Seguro - ₡55,000");
-            checkedListBox1.Items.Add("Garantía extendida - ₡75,000");
         }
 
-
-        private void btnSalir_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
         private void btnConsultar_Click(object sender, EventArgs e)
         {
+          /////////  if (!ValidarDatos()) return;
+
+            precioVehiculo = decimal.Parse(txtPrecio.Text);
+
+            // Calcular servicios
+            decimal servicios = CalcularServicios();
+
+            // Calcular IVA (13%)
+            decimal iva = precioVehiculo * 0.13m;
+            txtImpuesto.Text = iva.ToString("N0");
+
+            // Calcular subtotal
+            decimal subtotal = precioVehiculo + servicios + iva;
+
+            // Si es CONTADO
+            if (chkContado.Checked)
             {
-                try
-                {
-                    //  Validar que haya precio
-                    if (!decimal.TryParse(txtPrecio.Text, out precioVehiculo) || precioVehiculo <= 0)
-                    {
-                        return;
-                    }
-
-                    // Calcular servicios seleccionados DESDE LA BD
-                    decimal serviciosTotal = CalcularTotalServicios();
-
-                    //  Calcular impuesto (13%)
-                    decimal impuesto = precioVehiculo * 0.13m;
-                    txtImpuesto.Text = impuesto.ToString("N0");
-
-                    // Subtotal
-                    decimal subtotal = precioVehiculo + serviciosTotal + impuesto;
-
-                    // Si es CONTADO
-                    if (chkContado.Checked)
-                    {
-                        txtTotalCalculo.Text = subtotal.ToString("N0");
-                        txtCuotaMensual.Text = "0";
-                        txtInteres.Text = "0";
-                        return;
-                    }
-
-                    // Si es FINANCIADO
-                    // Obtener prima
-                    decimal prima = 0;
-                    if (!decimal.TryParse(txtPrima.Text, out prima) || prima < 0)
-                    {
-                        prima = 0;
-                        txtPrima.Text = "0";
-                    }
-
-                    // Obtener meses
-                    int meses = 36;
-                    if (!int.TryParse(txtMesesPlazo.Text, out meses) || meses < 12)
-                    {
-                        meses = 36;
-                        txtMesesPlazo.Text = "36";
-                    }
-
-                    // Obtener tasa de interés DESDE LA BD
-                    decimal tasaInteres = ObtenerTasaInteres();
-
-                    // Calcular monto a financiar
-                    decimal montoFinanciar = subtotal - prima;
-                    if (montoFinanciar < 0) montoFinanciar = 0;
-
-                    // Calcular interés total
-                    decimal interesTotal = montoFinanciar * tasaInteres * (meses / 12m);
-
-                    // Calcular cuota mensual
-                    decimal totalPagar = montoFinanciar + interesTotal;
-                    decimal cuotaMensual = meses > 0 ? totalPagar / meses : 0;
-
-                    // Calcular total factura
-                    decimal totalFactura = subtotal + interesTotal;
-
-                    // Mostrar resultados
-                    txtInteres.Text = (tasaInteres * 100).ToString("N1");
-                    txtTotalCalculo.Text = totalFactura.ToString("N0");
-                    txtCuotaMensual.Text = cuotaMensual.ToString("N0");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error en cálculo: " + ex.Message, "Error");
-                }
+                txtTotalCalculo.Text = subtotal.ToString("N0");
+                txtCuotaMensual.Text = "0";
+                txtInteres.Text = "0";
+                return;
             }
+
+            // Si es FINANCIADO
+            decimal prima = decimal.Parse(txtPrima.Text);
+            int meses = int.Parse(txtMesesPlazo.Text);
+            decimal tasa = ObtenerTasaInteres();
+
+            // Monto a financiar
+            decimal montoFinanciar = subtotal - prima;
+            if (montoFinanciar < 0) montoFinanciar = 0;
+
+            // Calcular intereses
+            decimal interesTotal = montoFinanciar * tasa * (meses / 12m);
+
+            // Calcular cuota mensual
+            decimal cuotaMensual = meses > 0 ? (montoFinanciar + interesTotal) / meses : 0;
+
+            // Mostrar resultados
+            txtInteres.Text = (tasa * 100).ToString("N1");
+            txtCuotaMensual.Text = cuotaMensual.ToString("N0");
+            txtTotalCalculo.Text = (subtotal + interesTotal).ToString("N0");
         }
-        private decimal CalcularTotalServicios()
+
+        private decimal CalcularServicios()
         {
             decimal total = 0;
 
-            try
+            foreach (string item in checkedListBox1.CheckedItems)
             {
-                // Obtener datos de servicios desde la BD
-                if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+                if (item.Contains("Financiamiento")) continue;
+
+                int index = item.IndexOf('₡');
+                if (index >= 0)
                 {
-                    for (int i = 0; i < checkedListBox1.Items.Count; i++)
-                    {
-                        if (checkedListBox1.GetItemChecked(i))
-                        {
-                            // Extraer el costo del texto del item
-                            string itemText = checkedListBox1.Items[i].ToString();
-
-                            // Buscar el patrón "₡" seguido de números con/sin separadores
-                            int colonIndex = itemText.IndexOf('₡');
-                            if (colonIndex >= 0)
-                            {
-                                string costoStr = itemText.Substring(colonIndex + 1);
-
-                                // Remover puntos (separadores de miles) y espacios
-                                costoStr = costoStr.Replace(".", "").Replace(" ", "");
-
-                                if (decimal.TryParse(costoStr, out decimal costo))
-                                {
-                                    total += costo;
-                                }
-                            }
-                        }
-                    }
+                    string costoStr = item.Substring(index + 1).Replace(".", "").Replace(",", "");
+                    if (decimal.TryParse(costoStr, out decimal costo))
+                        total += costo;
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error al calcular servicios: {ex.Message}", "Error");
             }
 
             return total;
@@ -227,74 +195,136 @@ namespace ProyectoUsadosGrupo4
         {
             try
             {
-                if (cmbEntidadFinanciera.SelectedValue != null)
+                if (cmbEntidadFinanciera.SelectedValue != null && ds != null)
                 {
-                    // Obtener el ID de la entidad seleccionada
-                    string idEntidad = cmbEntidadFinanciera.SelectedValue.ToString();
-
-                    // Buscar la tasa de interés en los datos cargados
-                    if (ds != null && ds.Tables.Count > 0)
+                    string id = cmbEntidadFinanciera.SelectedValue.ToString();
+                    foreach (DataRow row in ds.Tables[0].Rows)
                     {
-                        DataTable dt = ds.Tables[0];
-                        DataRow[] rows = dt.Select($"IdEntidad = '{idEntidad}'");
-
-                        if (rows.Length > 0)
-                        {
-                            // Asumiendo que la columna se llama "TasaInteres"
-                            if (dt.Columns.Contains("TasaInteres"))
-                            {
-                                string tasaStr = rows[0]["TasaInteres"].ToString();
-                                if (decimal.TryParse(tasaStr, out decimal tasaDecimal))
-                                {
-                                    return tasaDecimal / 100m; // Convertir porcentaje a decimal (ej: 8.5% -> 0.085)
-                                }
-                            }
-                        }
+                        if (row["id_entidad"].ToString() == id)
+                            return Convert.ToDecimal(row["TasaInteres"]);
                     }
                 }
-
-                
-                return 0.085m; // 8.5%
+                return 0.085m;
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show($"Error al obtener tasa de interés: {ex.Message}", "Error");
-                return 0.085m; // Valor por defecto
+                return 0.085m;
             }
         }
 
-        
-       private bool ValidarEntradas()
+       
+
+        private void chkContado_CheckedChanged(object sender, EventArgs e)
         {
-            // Validar precio
+            HabilitarControlesFinanciamiento();
+        }
+        private void HabilitarControlesFinanciamiento()
+        {
+            bool habilitar = !chkContado.Checked;
+            txtPrima.Enabled = habilitar;
+            txtMesesPlazo.Enabled = habilitar;
+            cmbEntidadFinanciera.Enabled = habilitar;
+
+            if (chkContado.Checked)
+            {
+                txtInteres.Text = "0";
+                txtCuotaMensual.Text = "0";
+            }
+            else if (cmbEntidadFinanciera.SelectedIndex >= 0)
+            {
+                // Cargar datos de la entidad seleccionada
+                txtInteres.Text = (ObtenerTasaInteres() * 100).ToString("N1");
+                CargarPlazoMaximo();
+            }
+        }
+
+        private void cmbEntidadFinanciera_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!chkContado.Checked && cmbEntidadFinanciera.SelectedIndex >= 0)
+            {
+                // Actualizar tasa de interés
+                txtInteres.Text = (ObtenerTasaInteres() * 100).ToString("N1");
+
+                // Actualizar plazo máximo
+                CargarPlazoMaximo();
+            }
+        }
+
+        private void btnReservarCita_Click(object sender, EventArgs e)
+        {
+            if (ValidarParaReservar())
+            {
+                string tipoPago = chkContado.Checked ? "CONTADO" : "FINANCIADO";
+                string mensajeReserva = $"CITA RESERVADA EXITOSAMENTE\n\n";
+                mensajeReserva += $"Tipo de vehículo: {txtTipoVehiculo.Text}\n";
+                mensajeReserva += $"Precio: ₡{txtPrecio.Text}\n";
+                mensajeReserva += $"Forma de pago: {tipoPago}\n";
+                mensajeReserva += $"Total: ₡{txtTotalCalculo.Text}\n";
+
+                if (!chkContado.Checked)
+                {
+                    mensajeReserva += $"Entidad: {cmbEntidadFinanciera.Text}\n";
+                    mensajeReserva += $"Cuota mensual: ₡{txtCuotaMensual.Text}\n";
+                }
+
+                MessageBox.Show(mensajeReserva, "Reserva Confirmada",
+                              MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+        private bool ValidarParaReservar()
+        {
             if (!decimal.TryParse(txtPrecio.Text, out decimal precio) || precio <= 0)
             {
-                MessageBox.Show("Por favor ingrese un precio válido mayor a 0", "Validación");
-                txtPrecio.Focus();
+                MessageBox.Show("Debe ingresar un precio válido", "Validación");
                 return false;
             }
 
-            // Validar prima (si es financiado)
-            if (!chkContado.Checked)
+            if (string.IsNullOrEmpty(txtTotalCalculo.Text) || txtTotalCalculo.Text == "0")
             {
-                if (!decimal.TryParse(txtPrima.Text, out decimal prima) || prima < 0)
-                {
-                    MessageBox.Show("Por favor ingrese una prima válida (0 o mayor)", "Validación");
-                    txtPrima.Focus();
-                    return false;
-                }
-
-                // Validar meses plazo
-                if (!int.TryParse(txtMesesPlazo.Text, out int meses) || meses < 12 || meses > 84)
-                {
-                    MessageBox.Show("Por favor ingrese un plazo entre 12 y 84 meses", "Validación");
-                    txtMesesPlazo.Focus();
-                    return false;
-                }
+                MessageBox.Show("Debe realizar el cálculo primero", "Validación");
+                return false;
             }
 
             return true;
         }
+        private void CargarPlazoMaximo()
+        {
+            try
+            {
+                if (cmbEntidadFinanciera.SelectedValue != null && ds != null && ds.Tables.Count > 0)
+                {
+                    string idEntidad = cmbEntidadFinanciera.SelectedValue.ToString();
+                    DataTable dt = ds.Tables[0];
 
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        if (row["id_entidad"].ToString() == idEntidad)
+                        {
+                            if (row["Plazo"] != DBNull.Value)
+                            {
+                                int plazo = Convert.ToInt32(row["Plazo"]);
+                                txtMesesPlazo.Text = plazo.ToString();
+                                return;
+                            }
+                        }
+                    }
+                }
+                txtMesesPlazo.Text = "60"; // Valor por defecto si no se encuentra
+            }
+            catch
+            {
+                txtMesesPlazo.Text = "60";
+            }
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

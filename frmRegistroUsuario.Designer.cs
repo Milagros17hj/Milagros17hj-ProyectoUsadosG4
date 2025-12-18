@@ -369,7 +369,6 @@
             this.Name = "frmRegistroUsuario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmRegistroUsuario";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmRegistroUsuario_Load);
             this.grbUsuario.ResumeLayout(false);
             this.grbUsuario.PerformLayout();

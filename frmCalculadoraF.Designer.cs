@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.grpDatos = new System.Windows.Forms.GroupBox();
+            this.lblServiciosAdicionales = new System.Windows.Forms.Label();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.txtTotalCalculo = new System.Windows.Forms.TextBox();
             this.chkContado = new System.Windows.Forms.CheckBox();
@@ -57,6 +58,7 @@
             // 
             // grpDatos
             // 
+            this.grpDatos.Controls.Add(this.lblServiciosAdicionales);
             this.grpDatos.Controls.Add(this.checkedListBox1);
             this.grpDatos.Controls.Add(this.txtTotalCalculo);
             this.grpDatos.Controls.Add(this.chkContado);
@@ -84,13 +86,30 @@
             this.grpDatos.TabStop = false;
             this.grpDatos.Text = "Datos";
             // 
+            // lblServiciosAdicionales
+            // 
+            this.lblServiciosAdicionales.AutoSize = true;
+            this.lblServiciosAdicionales.Font = new System.Drawing.Font("Microsoft YaHei", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblServiciosAdicionales.Location = new System.Drawing.Point(480, 337);
+            this.lblServiciosAdicionales.Name = "lblServiciosAdicionales";
+            this.lblServiciosAdicionales.Size = new System.Drawing.Size(262, 31);
+            this.lblServiciosAdicionales.TabIndex = 22;
+            this.lblServiciosAdicionales.Text = "Servicios Adicionales:";
+            // 
             // checkedListBox1
             // 
+            this.checkedListBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkedListBox1.FormattingEnabled = true;
+            this.checkedListBox1.Items.AddRange(new object[] {
+            "Financiamiento",
+            "Mantenimiento - ₡180,000",
+            "Seguro - ₡55,000",
+            "Garantía extendida - ₡75,000"});
             this.checkedListBox1.Location = new System.Drawing.Point(486, 379);
             this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(491, 89);
+            this.checkedListBox1.Size = new System.Drawing.Size(491, 119);
             this.checkedListBox1.TabIndex = 21;
+            this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
             // 
             // txtTotalCalculo
             // 
@@ -110,6 +129,7 @@
             this.chkContado.TabIndex = 19;
             this.chkContado.Text = "Contado";
             this.chkContado.UseVisualStyleBackColor = true;
+            this.chkContado.CheckedChanged += new System.EventHandler(this.chkContado_CheckedChanged);
             // 
             // cmbEntidadFinanciera
             // 
@@ -118,6 +138,7 @@
             this.cmbEntidadFinanciera.Name = "cmbEntidadFinanciera";
             this.cmbEntidadFinanciera.Size = new System.Drawing.Size(204, 24);
             this.cmbEntidadFinanciera.TabIndex = 18;
+            this.cmbEntidadFinanciera.SelectedIndexChanged += new System.EventHandler(this.cmbEntidadFinanciera_SelectedIndexChanged);
             // 
             // txtMesesPlazo
             // 
@@ -271,6 +292,7 @@
             this.btnConsultar.TabIndex = 20;
             this.btnConsultar.Text = "Consultar";
             this.btnConsultar.UseVisualStyleBackColor = true;
+            this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);
             // 
             // btnReservarCita
             // 
@@ -281,6 +303,7 @@
             this.btnReservarCita.TabIndex = 21;
             this.btnReservarCita.Text = "Reservar Cita";
             this.btnReservarCita.UseVisualStyleBackColor = true;
+            this.btnReservarCita.Click += new System.EventHandler(this.btnReservarCita_Click);
             // 
             // btnSalir
             // 
@@ -338,5 +361,6 @@
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.TextBox txtTotalCalculo;
         private System.Windows.Forms.CheckedListBox checkedListBox1;
+        private System.Windows.Forms.Label lblServiciosAdicionales;
     }
 }

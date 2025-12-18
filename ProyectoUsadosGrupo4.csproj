@@ -72,6 +72,12 @@
     <Compile Include="DatosServicioAdicional.cs" />
     <Compile Include="DatosUsuario.cs" />
     <Compile Include="DatosVehiculo.cs" />
+    <Compile Include="frmCalculadoraF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCalculadoraF.Designer.cs">
+      <DependentUpon>frmCalculadoraF.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmCambiarContraseña.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +93,9 @@
     <Compile Include="frmFacturación.Designer.cs">
       <DependentUpon>frmFacturación.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="frmCalculadoraF.resx">
+      <DependentUpon>frmCalculadoraF.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmCambiarContraseña.resx">
       <DependentUpon>frmCambiarContraseña.cs</DependentUpon>
     </EmbeddedResource>
