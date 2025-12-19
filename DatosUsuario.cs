@@ -9,6 +9,7 @@
         private string email;
         private bool esEmpleado;
         private int idEstado;
+        private string rol;
 
         public int IdUsuario { get => idUsuario; set => idUsuario = value; }
         public string NumeroIdentificacion { get => numeroIdentificacion; set => numeroIdentificacion = value; }
@@ -17,11 +18,8 @@
         public string Email { get => email; set => email = value; }
         public bool EsEmpleado { get => esEmpleado; set => esEmpleado = value; }
         public int IdEstado { get => idEstado; set => idEstado = value; }
+        public string Rol { get => rol; set => rol = value; }
 
-        public string MostrarUsuario()
-        {
-            return "Usuario: " + NombreUsuario + " - Email: " + Email +
-                   " - Estado: " + IdEstado + " - EsEmpleado: " + EsEmpleado;
-        }
+
     }
 }

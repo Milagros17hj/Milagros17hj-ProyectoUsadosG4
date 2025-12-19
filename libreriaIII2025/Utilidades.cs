@@ -13,11 +13,11 @@ namespace libreriaIII2025
     public class Utilidades
     {
         //Conexión
-        //Escribir la cadena de conexión a la base de datos "CAMBIARA EN CADA UNO SEGUN LA BASE DE DATOS QUE SE USE"
+        //Escribir la cadena de conexión a la base de datos "CAMBIARA EN CADA UNO SEGUN LA BASE DE DATOS QUE SE USE";Trust Server Certificate=True
 
         public static DataSet ejecutar(string comando)
         {
-            SqlConnection conn = new SqlConnection(@"Data Source=Nahomy\MSSQLSERVER2022;Initial Catalog=BD_USADOSCR; Integrated Security=True");
+            SqlConnection conn = new SqlConnection(@"Data Source=LAPTOP-U1S88HRT\CURSOSQL2022;Initial Catalog=BD_USADOSCR;Integrated Security=True");
             conn.Open();
             DataSet ds = new DataSet();
             SqlDataAdapter adaptador = new SqlDataAdapter(comando, conn);

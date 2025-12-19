@@ -27,12 +27,9 @@ namespace ProyectoUsadosGrupo4
             this.Close(); // cerrar el detalle
         }
 
-
-        
-
         private DatosVehiculo vehiculoActual;
-
-            public frmDetallesVehiculo(DatosVehiculo vehiculo)
+        
+        public frmDetallesVehiculo(DatosVehiculo vehiculo)
         {
             InitializeComponent();
             vehiculoActual = vehiculo;
@@ -105,13 +102,21 @@ namespace ProyectoUsadosGrupo4
             btnCalculadora.Select();
         }
 
-        private void pbVehiculo_Click(object sender, EventArgs e)
+        private void btnCalculadora_Click(object sender, EventArgs e)
         {
+            int idVehiculo = vehiculoActual.IdVehiculo;       
+            decimal precioVehiculo = vehiculoActual.Precio;   
+
+            frmCalculadora frmCalc = new frmCalculadora(idVehiculo, precioVehiculo);
+            frmCalc.MdiParent = this.MdiParent;
+            frmCalc.Show();
+            this.Close();
+
 
         }
 
-
     }
+}
 
     
-}
+

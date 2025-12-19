@@ -20,7 +20,7 @@ namespace ProyectoUsadosGrupo4
 
         private void btnManualUsuario_Click(object sender, EventArgs e)
         {
-            Process.Start(@"AJUSTAR CON LA RUTA DONDE TIENEN EL MANUAL");
+            Process.Start(@"C:\C#2025\IIICUATRI\PROYECTO\ProyectoUsadosGrupo4\MANUALUSUARIO.pdf");
         }
 
         private void btnSalir_Click(object sender, EventArgs e)

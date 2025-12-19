@@ -100,8 +100,18 @@ namespace ProyectoUsadosGrupo4
 
                     if (dsRol.Tables[0].Rows.Count > 0)
                     {
-                        Sesiones.Rol = Convert.ToInt32(dsRol.Tables[0].Rows[0]["id_rol"]);
-                        Sesiones.IdEmpleado = Convert.ToInt32(dsRol.Tables[0].Rows[0]["id_empleado"]); // 👈 guardar id_empleado
+                        int idRol = Convert.ToInt32(dsRol.Tables[0].Rows[0]["id_rol"]);
+                        Sesiones.Rol = idRol;
+                        Sesiones.IdEmpleado = Convert.ToInt32(dsRol.Tables[0].Rows[0]["id_empleado"]);
+
+                        switch (idRol)
+                        {
+                            case 1: usuarioActual.Rol = "Administrador"; break;
+                            case 2: usuarioActual.Rol = "Recepcionista"; break;
+                            case 3: usuarioActual.Rol = "Agente"; break;
+                            case 4: usuarioActual.Rol = "Cajera"; break;
+                            default: usuarioActual.Rol = "Empleado"; break;
+                        }
                     }
                     else
                     {
@@ -109,12 +119,30 @@ namespace ProyectoUsadosGrupo4
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
-
                 }
                 else
                 {
-                    Sesiones.Rol = 0; // Cliente no tiene rol
+                    Sesiones.Rol = 0; // Cliente
+                    usuarioActual.Rol = "Cliente";
+
+                    string cmdCliente = string.Format(
+                        "SELECT id_cliente FROM Cliente WHERE numero_identificacion = '{0}'",
+                        usuarioActual.NumeroIdentificacion);
+
+                    DataSet dsCliente = Utilidades.ejecutar(cmdCliente);
+
+                    if (dsCliente.Tables[0].Rows.Count > 0)
+                    {
+                        Sesiones.IdCliente = Convert.ToInt32(dsCliente.Tables[0].Rows[0]["id_cliente"]);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontró el cliente en la tabla Cliente.", "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                 }
+
                 Sesiones.Usuario = usuarioActual.NombreUsuario;
                 MessageBox.Show("Bienvenido al sistema.", "Login",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -144,6 +172,8 @@ namespace ProyectoUsadosGrupo4
         {
             txtUsuario.Focus();
         }
+
+       
     }
 }
 

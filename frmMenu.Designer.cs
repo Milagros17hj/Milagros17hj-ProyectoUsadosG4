@@ -46,8 +46,6 @@
             this.facturaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rEPORTESToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reporteDeVentasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reporteDeCitasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reporteDeReservasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.estadisticasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aYUDAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manualDeUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -172,6 +170,7 @@
             this.reservasToolStripMenuItem.Name = "reservasToolStripMenuItem";
             this.reservasToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.reservasToolStripMenuItem.Text = "Reservas";
+            this.reservasToolStripMenuItem.Click += new System.EventHandler(this.reservasToolStripMenuItem_Click);
             // 
             // citasToolStripMenuItem
             // 
@@ -185,13 +184,12 @@
             this.facturaciónToolStripMenuItem.Name = "facturaciónToolStripMenuItem";
             this.facturaciónToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.facturaciónToolStripMenuItem.Text = "Facturación";
+            this.facturaciónToolStripMenuItem.Click += new System.EventHandler(this.facturaciónToolStripMenuItem_Click);
             // 
             // rEPORTESToolStripMenuItem
             // 
             this.rEPORTESToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.reporteDeVentasToolStripMenuItem,
-            this.reporteDeCitasToolStripMenuItem,
-            this.reporteDeReservasToolStripMenuItem,
             this.estadisticasToolStripMenuItem});
             this.rEPORTESToolStripMenuItem.Name = "rEPORTESToolStripMenuItem";
             this.rEPORTESToolStripMenuItem.Size = new System.Drawing.Size(91, 24);
@@ -200,26 +198,16 @@
             // reporteDeVentasToolStripMenuItem
             // 
             this.reporteDeVentasToolStripMenuItem.Name = "reporteDeVentasToolStripMenuItem";
-            this.reporteDeVentasToolStripMenuItem.Size = new System.Drawing.Size(227, 26);
+            this.reporteDeVentasToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.reporteDeVentasToolStripMenuItem.Text = "Reporte de Ventas";
-            // 
-            // reporteDeCitasToolStripMenuItem
-            // 
-            this.reporteDeCitasToolStripMenuItem.Name = "reporteDeCitasToolStripMenuItem";
-            this.reporteDeCitasToolStripMenuItem.Size = new System.Drawing.Size(227, 26);
-            this.reporteDeCitasToolStripMenuItem.Text = "Reporte de Citas";
-            // 
-            // reporteDeReservasToolStripMenuItem
-            // 
-            this.reporteDeReservasToolStripMenuItem.Name = "reporteDeReservasToolStripMenuItem";
-            this.reporteDeReservasToolStripMenuItem.Size = new System.Drawing.Size(227, 26);
-            this.reporteDeReservasToolStripMenuItem.Text = "Reporte de Reservas";
+            this.reporteDeVentasToolStripMenuItem.Click += new System.EventHandler(this.reporteDeVentasToolStripMenuItem_Click);
             // 
             // estadisticasToolStripMenuItem
             // 
             this.estadisticasToolStripMenuItem.Name = "estadisticasToolStripMenuItem";
-            this.estadisticasToolStripMenuItem.Size = new System.Drawing.Size(227, 26);
+            this.estadisticasToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.estadisticasToolStripMenuItem.Text = "Estadisticas";
+            this.estadisticasToolStripMenuItem.Click += new System.EventHandler(this.estadisticasToolStripMenuItem_Click);
             // 
             // aYUDAToolStripMenuItem
             // 
@@ -255,6 +243,7 @@
             this.Name = "frmMenu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "VENTA USADOS CR";
+            this.Load += new System.EventHandler(this.frmMenu_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -280,8 +269,6 @@
         private System.Windows.Forms.ToolStripMenuItem citasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem facturaciónToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reporteDeVentasToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem reporteDeCitasToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem reporteDeReservasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem estadisticasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cerrarSesionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;

@@ -205,7 +205,7 @@
             this.pbVehiculo.Size = new System.Drawing.Size(300, 308);
             this.pbVehiculo.TabIndex = 14;
             this.pbVehiculo.TabStop = false;
-            this.pbVehiculo.Click += new System.EventHandler(this.pbVehiculo_Click);
+
             // 
             // grbCaracteristicas
             // 
@@ -436,6 +436,7 @@
             this.btnCalculadora.TabIndex = 67;
             this.btnCalculadora.Text = "&Calculadora";
             this.btnCalculadora.UseVisualStyleBackColor = true;
+            this.btnCalculadora.Click += new System.EventHandler(this.btnCalculadora_Click);
             // 
             // btnVolver
             // 
